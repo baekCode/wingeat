@@ -1,10 +1,11 @@
 import React from 'react';
+import Layout from '@components/layout';
 
 CartPage.propTypes = {};
 
 function CartPage(props) {
   return (
-    <div>CartPage</div>
+    <Layout>CartPage</Layout>
   );
 }
 

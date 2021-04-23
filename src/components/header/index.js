@@ -5,10 +5,10 @@ Header.propTypes = {};
 
 function Header(props) {
   return (
-    <div>
+    <header>
       <h1><Link to={'/'}>로고</Link></h1>
       <Link to={'/cart'}>장바구니</Link>
-    </div>
+    </header>
   );
 }
 
