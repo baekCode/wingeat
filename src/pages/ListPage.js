@@ -4,7 +4,7 @@ ListPage.propTypes = {};
 
 function ListPage(props) {
   return (
-    <div></div>
+    <div>ListPage</div>
   );
 }
 

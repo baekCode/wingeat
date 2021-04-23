@@ -4,7 +4,7 @@ CartPage.propTypes = {};
 
 function CartPage(props) {
   return (
-    <div></div>
+    <div>CartPage</div>
   );
 }
 

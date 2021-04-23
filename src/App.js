@@ -1,8 +1,15 @@
 import React from 'react';
+import {Redirect, Route, Switch} from 'react-router-dom';
+import ListPage from '@pages/ListPage';
+import CartPage from '@pages/CartPage';
 
-function App(props) {
+function App() {
   return (
-    <div>Hello Wingeatsss</div>
+    <Switch>
+      <Route component={ListPage} path={'/'} exact/>
+      <Route component={CartPage} path='/cart'/>
+      <Redirect from={'*'} to={'/'}/>
+    </Switch>
   );
 }
 
