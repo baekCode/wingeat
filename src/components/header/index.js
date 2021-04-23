@@ -1,14 +1,14 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Cart, Container, Inner, Logo, TopBar} from '@components/header/styled';
 
 Header.propTypes = {};
 
 function Header(props) {
   return (
-    <header>
-      <h1><Link to={'/'}>로고</Link></h1>
-      <Link to={'/cart'}>장바구니</Link>
-    </header>
+    <Container>
+      <TopBar><Inner><Cart to={'/cart'}>장바구니</Cart></Inner></TopBar>
+      <Logo to={'/'}>로고</Logo>
+    </Container>
   );
 }
 
