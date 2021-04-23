@@ -1,14 +1,16 @@
 import React from 'react';
-import {Container} from '@components/layout/styled';
+import {Container, Contents} from '@components/layout/styled';
 import Header from '@components/header';
 
 Layout.propTypes = {};
 
-function Layout({children, ...rest}) {
-  return <Container {...rest}>
-    <Header/>
-    {children}
-  </Container>;
+function Layout({children}) {
+  return (
+    <Container>
+      <Header/>
+      <Contents children={children}/>
+    </Container>
+  );
 }
 
 export default Layout;

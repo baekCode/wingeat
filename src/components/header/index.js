@@ -1,14 +1,14 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Cart, Container, Contents, Count, Inner, Logo, TopBar} from '@components/header/styled';
 
 Header.propTypes = {};
 
-function Header(props) {
+function Header({count}) {
   return (
-    <header>
-      <h1><Link to={'/'}>로고</Link></h1>
-      <Link to={'/cart'}>장바구니</Link>
-    </header>
+    <Container>
+      <TopBar><Inner><Cart to={'/cart'}><Count>0</Count>장바구니</Cart></Inner></TopBar>
+      <Contents><Logo to={'/'}><img src={'https://image.wingeat.com/logo/images/we_logo_center.png'}/></Logo></Contents>
+    </Container>
   );
 }
 
