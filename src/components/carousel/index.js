@@ -1,10 +1,13 @@
 import React from 'react';
+import Slider from 'react-slick';
 
 Carousel.propTypes = {};
 
 function Carousel(props) {
   return (
-    <div></div>
+    <div>
+      <Slider/>
+    </div>
   );
 }
 
