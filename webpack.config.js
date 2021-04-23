@@ -1,16 +1,16 @@
 const path = require('path');
-const Dotenv = require("dotenv-webpack");
-const CopyPlugin = require("copy-webpack-plugin");
+const Dotenv = require('dotenv-webpack');
+const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = env => ({
   mode     : env.mode,
   entry    : ['@babel/polyfill', './src/index.js'],
   output   : {
-    publicPath: "/",
+    publicPath: '/',
     path      : path.resolve(__dirname, 'dist'),
-    filename: '[name].[hash].js',
+    filename  : '[name].[hash].js',
   },
   devServer: {
     historyApiFallback: true,
@@ -23,13 +23,12 @@ module.exports = env => ({
     extensions: ['.js', '.jsx'],
     alias     : {
       '@'          : path.resolve(__dirname, 'src/'),
+      '@config'    : path.resolve(__dirname, 'src/config'),
+      '@containers': path.resolve(__dirname, 'src/containers'),
       '@components': path.resolve(__dirname, 'src/components'),
-      '@constants' : path.resolve(__dirname, 'src/constants'),
-      '@hooks'     : path.resolve(__dirname, 'src/hooks'),
-      '@routes'    : path.resolve(__dirname, 'src/routes'),
-      '@store'     : path.resolve(__dirname, 'src/store'),
-      '@styles'    : path.resolve(__dirname, 'src/styles'),
-      '@utils'     : path.resolve(__dirname, 'src/utils'),
+      '@modules'   : path.resolve(__dirname, 'src/modules'),
+      '@pages'     : path.resolve(__dirname, 'src/pages'),
+      '@lib'       : path.resolve(__dirname, 'src/lib'),
     },
   },
   module   : {
@@ -67,7 +66,7 @@ module.exports = env => ({
     }),
     new CopyPlugin({
       patterns: [
-        {from: "public"},
+        {from: 'public'},
       ],
     }),
   ],
