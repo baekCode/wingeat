@@ -3,6 +3,7 @@ const Dotenv = require('dotenv-webpack');
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = env => ({
   mode     : env.mode,
@@ -39,6 +40,10 @@ module.exports = env => ({
         use    : ['babel-loader'],
       },
       {
+        test: /\.((c|sa|sc)ss)$/i,
+        use : ['style-loader', 'css-loader'],
+      },
+      {
         test   : /\.(ico|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader : 'url-loader',
         options: {
@@ -60,6 +65,11 @@ module.exports = env => ({
         removeComments    : true,
       } : false
     }),
+    new MiniCssExtractPlugin({
+        filename     : '[name].css',
+        chunkFilename: '[id].css',
+      }
+    ),
     new CleanWebpackPlugin(),
     new Dotenv({
       path: env.mode === 'development' ? '.env.develop' : '.env.prod'
