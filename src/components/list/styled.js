@@ -3,6 +3,10 @@ import styled from 'styled-components';
 export const Container = styled.div`
   margin: -1rem 0 0 -1rem;
   font-size: 0;
+   @media (max-width: 768px) {
+    width: calc(100% - 1rem);
+    margin: -1rem 0 -1rem;
+  }
 `;
 
 export const ItemContainer = styled.div`
