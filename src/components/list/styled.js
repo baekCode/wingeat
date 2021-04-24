@@ -7,7 +7,7 @@ export const Container = styled.div`
 
 export const ItemContainer = styled.div`
   display: inline-block;
-  width: 25%;
+  width: ${props => props.isMobile ? '50%' : '25%'};
   padding: 1rem 0 0 1rem;
   vertical-align: top;
   img {

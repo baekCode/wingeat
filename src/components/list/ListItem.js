@@ -13,11 +13,11 @@ import {FaShoppingCart} from 'react-icons/all';
 
 ListItem.propTypes = {};
 
-function ListItem({item}) {
+function ListItem({item, isMobile}) {
   const {id, itemName, image} = item;
   const price = item?.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
   return (
-    <ItemContainer>
+    <ItemContainer isMobile={isMobile}>
       <ItemContents>
         <ItemThumb>
           <img src={`https://image.wingeat.com/${image}`} alt=""/>

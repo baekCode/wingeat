@@ -4,11 +4,11 @@ import ListItem from '@components/list/ListItem';
 
 List.propTypes = {};
 
-function List({list}) {
+function List({list, isMobile}) {
   if (!list) return;
   return (
     <Container>
-      {list.map(item => <ListItem key={item.id} item={item}/>)}
+      {list.map(item => <ListItem isMobile={isMobile} key={item.id} item={item}/>)}
     </Container>
   );
 }

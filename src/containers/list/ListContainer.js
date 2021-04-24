@@ -1,6 +1,7 @@
 import React from 'react';
 import List from '@components/list';
 import Title from '@components/title';
+import useIsMobile from '@/hooks/useIsMobile';
 
 const MOCK_DATA = [
   {
@@ -32,10 +33,11 @@ const MOCK_DATA = [
 ListContainer.propTypes = {};
 
 function ListContainer(props) {
+  const isMobile = useIsMobile(1023);
   return (
     <>
       <Title children="윙잇 MADE"/>
-      <List list={MOCK_DATA}/>
+      <List list={MOCK_DATA} isMobile={isMobile}/>
     </>
   );
 }
