@@ -14,8 +14,9 @@ export function* listSaga() {
 }
 
 const initialState = {
-  list : [],
-  error: null
+  list           : [],
+  isInfinityPages: true,
+  error          : null
 };
 
 const list = handleActions({
@@ -26,7 +27,8 @@ const list = handleActions({
   }),
   [LIST_SUCCESS]: (state, {payload: list}) => ({
     ...state,
-    list: [...state.list, ...list]
+    list           : [...state.list, ...list],
+    isInfinityPages: list.length > 0
   }),
   [LIST_FAILURE]: (state, {payload: error}) => ({
     ...state,
