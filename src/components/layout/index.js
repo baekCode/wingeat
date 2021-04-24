@@ -1,14 +1,16 @@
 import React from 'react';
 import {Container, Contents} from '@components/layout/styled';
 import Header from '@components/header';
+import Title from '@components/title';
 
 Layout.propTypes = {};
 
-function Layout({children}) {
+function Layout({children, title, ...rest}) {
   return (
     <Container>
       <Header/>
-      <Contents children={children}/>
+      {title && <Title children={title}/>}
+      <Contents {...rest} children={children}/>
     </Container>
   );
 }
