@@ -1,10 +1,13 @@
 import React from 'react';
+import CarouselItem from '@components/carousel/CarouselItem';
 import {CarouselSlider} from '@components/carousel/styled';
 
 Carousel.propTypes = {};
 
-function Carousel(props) {
+function Carousel({list}) {
+  if (!list) return null;
   const settings = {
+    arrows        : false,
     dots          : true,
     infinite      : true,
     autoplay      : true,
@@ -15,24 +18,7 @@ function Carousel(props) {
   };
   return (
     <CarouselSlider {...settings}>
-      <div>
-        <h3>1</h3>
-      </div>
-      <div>
-        <h3>2</h3>
-      </div>
-      <div>
-        <h3>3</h3>
-      </div>
-      <div>
-        <h3>4</h3>
-      </div>
-      <div>
-        <h3>5</h3>
-      </div>
-      <div>
-        <h3>6</h3>
-      </div>
+      {list.map((src, index) => <CarouselItem key={index} src={src}/>)}
     </CarouselSlider>
   );
 }
