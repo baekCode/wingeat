@@ -1,5 +1,5 @@
 import React from 'react';
-import Slider from 'react-slick';
+import {CarouselSlider} from '@components/carousel/styled';
 
 Carousel.propTypes = {};
 
@@ -14,7 +14,7 @@ function Carousel(props) {
     slidesToScroll: 1
   };
   return (
-    <Slider {...settings}>
+    <CarouselSlider {...settings}>
       <div>
         <h3>1</h3>
       </div>
@@ -33,7 +33,7 @@ function Carousel(props) {
       <div>
         <h3>6</h3>
       </div>
-    </Slider>
+    </CarouselSlider>
   );
 }
 
