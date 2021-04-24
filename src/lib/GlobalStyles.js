@@ -19,6 +19,7 @@ const GlobalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
     min-height: 100%;
     font-size: 14px;
+    word-break: break-word;
   }
   #root {
     min-height: 100%;
