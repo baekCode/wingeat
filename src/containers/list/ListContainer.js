@@ -1,7 +1,7 @@
 import React from 'react';
 import List from '@components/list';
 import Title from '@components/title';
-import useIsMobile from '@/hooks/useIsMobile';
+import useIsMobile from '@hooks/useIsMobile';
 
 const MOCK_DATA = [
   {

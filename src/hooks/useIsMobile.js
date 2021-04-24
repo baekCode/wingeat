@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import useWindowSize from '@/hooks/useWindowSize';
+import useWindowSize from '@hooks/useWindowSize';
 
 function useIsMobile(widthSize) {
   const [isMobile, setIsMobile] = useState(false);
