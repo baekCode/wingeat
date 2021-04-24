@@ -1,20 +1,15 @@
 import {useEffect, useState} from 'react';
 import useWindowSize from '@/hooks/useWindowSize';
 
-function useIsMobile(width) {
+function useIsMobile(widthSize) {
   const [isMobile, setIsMobile] = useState(false);
   const windowSize = useWindowSize();
 
   useEffect(() => {
     const {width} = windowSize;
-    (width < width) ? setIsMobile(true) : setIsMobile(false);
+    (width < widthSize) ? setIsMobile(true) : setIsMobile(false);
 
   }, [windowSize]);
-
-  useEffect(() => {
-    console.log(isMobile);
-  }, [isMobile]);
-
   return isMobile;
 }
 
