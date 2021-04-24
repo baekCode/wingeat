@@ -24,11 +24,7 @@ const MOCK_DATA = [
     'mobileImage': 'feature/images/038afd38-1439-4f3e-9f16-5ff849d19303-w1080.jpg'
   }
 ];
-/*
-*
-        pcSrc={`https://image.wingeat.com/${pcImage}`}
-        moSrc={`https://image.wingeat.com/${mobileImage}`}
-* */
+
 CarouselContainer.propTypes = {};
 
 function CarouselContainer(props) {
@@ -37,9 +33,9 @@ function CarouselContainer(props) {
   const isMobile = useIsMobile(1023);
 
   useEffect(() => {
-    const deviceImage = isMobile ? 'image' : 'mobileImage';
+    const deviceImage = isMobile ? 'mobileImage' : 'image';
     const imgUrl = MOCK_DATA.map(item => `https://image.wingeat.com/${item[deviceImage]}`);
-    setList(state => [...state, ...imgUrl]);
+    setList([...imgUrl]);
   }, [isMobile]);
 
   return <Carousel list={list}/>;
