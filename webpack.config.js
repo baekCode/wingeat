@@ -13,6 +13,10 @@ module.exports = env => ({
     path      : path.resolve(__dirname, 'dist'),
     filename  : '[name].[hash].js',
   },
+  node     : {
+    fs : 'empty',
+    net: 'empty',
+  },
   devServer: {
     historyApiFallback: true,
     inline            : true,
