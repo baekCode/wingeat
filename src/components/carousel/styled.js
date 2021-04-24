@@ -4,7 +4,9 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 export const CarouselSlider = styled(Slider)`
-
+  .slick-slide img {
+    max-width: 100%;
+  }
   .slick-dots {
     position: absolute;
     right: 10px;
