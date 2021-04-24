@@ -7,7 +7,7 @@ CartPage.propTypes = {};
 
 function CartPage(props) {
   return (
-    <Layout display={'flex'}>
+    <Layout display={'flex'} title={'장바구니'}>
       <CartContainer/>
       <OrderContainer/>
     </Layout>
