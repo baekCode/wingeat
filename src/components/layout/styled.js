@@ -5,4 +5,6 @@ export const Container = styled.div`
   width: 100%;
 `;
 
-export const Contents = styled(Responsive)``;
+export const Contents = styled(Responsive)`
+  display: ${props => props.display};
+`;

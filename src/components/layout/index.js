@@ -4,11 +4,11 @@ import Header from '@components/header';
 
 Layout.propTypes = {};
 
-function Layout({children}) {
+function Layout({children, ...rest}) {
   return (
     <Container>
       <Header/>
-      <Contents children={children}/>
+      <Contents {...rest} children={children}/>
     </Container>
   );
 }
