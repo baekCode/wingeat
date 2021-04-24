@@ -7,4 +7,7 @@ export const Container = styled.div`
 
 export const Contents = styled(Responsive)`
   display: ${props => props.display};
+  @media (max-width: 768px) {
+    flex-direction: ${props => props.display === 'flex' ? 'column' : 'row'}
+  }
 `;
