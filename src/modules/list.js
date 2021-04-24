@@ -14,19 +14,19 @@ export function* listSaga() {
 }
 
 const initialState = {
-  list : null,
+  list : [],
   error: null
 };
 
 const list = handleActions({
   [LIST]        : state => ({
     ...state,
-    list : null,
+    list : [...state.list],
     error: null,
   }),
   [LIST_SUCCESS]: (state, {payload: list}) => ({
     ...state,
-    list
+    list: [...state.list, ...list]
   }),
   [LIST_FAILURE]: (state, {payload: error}) => ({
     ...state,
