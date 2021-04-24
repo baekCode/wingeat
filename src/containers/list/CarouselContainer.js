@@ -3,8 +3,9 @@ import {useDispatch, useSelector} from 'react-redux';
 import Carousel from '@components/carousel';
 import useIsMobile from '@hooks/useIsMobile';
 import {getCarousel} from '@modules/carousel';
+import config from '@config';
 
-CarouselContainer.propTypes = {};
+const {IMG_URL} = config;
 
 function CarouselContainer(props) {
   const dispatch = useDispatch();
@@ -18,8 +19,10 @@ function CarouselContainer(props) {
 
   useEffect(() => {
     if (!carousel) return;
+
     const deviceImage = isMobile ? 'mobileImage' : 'image';
-    const imgUrl = carousel.map(item => `https://image.wingeat.com/${item[deviceImage]}`);
+    const imgUrl = carousel.map(item => `${IMG_URL}${item[deviceImage]}`);
+
     setList([...imgUrl]);
   }, [isMobile, carousel]);
 
