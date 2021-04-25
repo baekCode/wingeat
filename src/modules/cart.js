@@ -17,7 +17,7 @@ const cart = handleActions({
         ...state,
         [itemKey]: {
           ...cartList,
-          count: state[itemKey]?.count + cartList.count
+          count: (state[itemKey]?.count ? state[itemKey]?.count : 0) + cartList.count
         }
       };
     } else {
