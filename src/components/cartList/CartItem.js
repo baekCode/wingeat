@@ -14,7 +14,7 @@ import {
 
 CartItem.propTypes = {};
 
-function CartItem({item, onClickCheckbox, onClickDelete}) {
+function CartItem({item, onClickCheckbox, onClickDelete, onClickIncrease, onClickDecrease}) {
   const {id, image, itemName, price, count} = item;
   const {IMG_URL} = config;
   const [quantity, setQuantity] = useState(count);
@@ -26,13 +26,13 @@ function CartItem({item, onClickCheckbox, onClickDelete}) {
   const increase = () => {
     setQuantity(quantity + 1);
     if (checked) {
-      onClickCheckbox({id, itemName, quantity, price, totalPrice, checked, isPlus: true});
+      onClickIncrease({id, itemName, quantity, price, totalPrice, checked});
     }
   };
   const decrease = () => {
     setQuantity(quantity === 1 ? 1 : quantity - 1);
     if (checked) {
-      onClickCheckbox({id, itemName, quantity, price, totalPrice, checked, isMinus: true});
+      onClickDecrease({id, itemName, quantity, price, totalPrice, checked});
     }
   };
   const onClick = e => {
