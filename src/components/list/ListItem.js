@@ -24,7 +24,7 @@ function ListItem({item, isMobile, lastElementRef, onClickCartHandler}) {
   };
 
   return (
-    <ItemContainer isMobile={isMobile} ref={lastElementRef}>
+    <ItemContainer isMobile={isMobile} ref={lastElementRef} data-id={id}>
       <ItemContents>
         <ItemThumb>
           <img src={`https://image.wingeat.com/${image}`} alt=""/>
