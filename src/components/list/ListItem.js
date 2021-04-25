@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   ItemCart,
   ItemCartButton,
@@ -15,12 +15,11 @@ ListItem.propTypes = {};
 
 function ListItem({item, isMobile, lastElementRef, onClickCartHandler}) {
   const {id, itemName, image} = item;
-  const [count, setCount] = useState(1);
+
   const price = item?.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
   const onClick = () => {
-    const itemData = {...item, count};
+    const itemData = {...item, count: 1};
     onClickCartHandler(itemData);
-    setCount(count + 1);
   };
 
   return (
