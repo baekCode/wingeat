@@ -13,6 +13,10 @@ module.exports = env => ({
     path      : path.resolve(__dirname, 'dist'),
     filename  : '[name].[hash].js',
   },
+  node     : {
+    fs : 'empty',
+    net: 'empty',
+  },
   devServer: {
     historyApiFallback: true,
     inline            : true,
@@ -28,6 +32,7 @@ module.exports = env => ({
       '@containers': path.resolve(__dirname, 'src/containers'),
       '@components': path.resolve(__dirname, 'src/components'),
       '@modules'   : path.resolve(__dirname, 'src/modules'),
+      '@hooks'     : path.resolve(__dirname, 'src/hooks'),
       '@pages'     : path.resolve(__dirname, 'src/pages'),
       '@lib'       : path.resolve(__dirname, 'src/lib'),
     },
