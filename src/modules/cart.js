@@ -5,15 +5,22 @@ const CART = 'cart/CART';
 export const getCart = createAction(CART, cartList => cartList);
 
 const initialState = {
-  cartList: [],
+  cartList: {},
   error   : null
 };
 
 const cart = handleActions({
-    [CART]: (state, {payload: cartList}) => ({
-      ...state,
-      cartList
-    })
+    [CART]: (state, {payload: cartList}) => {
+      // const resDataKey = Object.keys(cartList.data.resData)[0];
+      const itemKey = cartList?.id;
+      return {
+        ...state,
+        cartList: {
+          ...state.cartList,
+          [itemKey]: {...cartList}
+        }
+      };
+    }
   },
   initialState
 );
