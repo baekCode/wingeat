@@ -22,7 +22,7 @@ function CartItem({item}) {
         <ItemInfo>
           <ItemTitle children={item.itemName}/>
           <ItemPrice children={item.price}/>
-          <ItemQuantity>수량</ItemQuantity>
+          <ItemQuantity>{item.count}</ItemQuantity>
           <ItemTotalPrice>합계금액</ItemTotalPrice>
         </ItemInfo>
       </ItemContents>

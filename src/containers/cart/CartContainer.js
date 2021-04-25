@@ -1,5 +1,6 @@
 import React from 'react';
 import CartList from '@components/cartList';
+import {useSelector} from 'react-redux';
 
 /*
 * Redux Cart Mock Data
@@ -28,9 +29,12 @@ CartContainer.propTypes = {};
 function CartContainer(props) {
   /*
   * 리덕스 장바구니에서 장바구니 리스트를 출력한다. (리덕스는 저장된 스토리지를 먼저 체크할것)*/
+  const {cart} = useSelector(({cart}) => ({cart: cart}));
+  const cartList = Object.values(cart);
+
   return (
     <>
-      <CartList cartList={MOCK_DATA}/>
+      <CartList cartList={cartList}/>
     </>
   );
 }
