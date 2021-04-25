@@ -11,6 +11,8 @@
 3. 환경변수(env) 설정 : .env.develop / .env.prod (있어야하지만 없어도 되겠금 구현)
 
 
+이슈 작성 하여 각 테스크 나누고 PR 
+
 [요구사항 및 기능정의 바로가기](https://github.com/baekCode/wingeat/issues/1)
 
 일부 요구 사항을 변경 했습니다.

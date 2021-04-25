@@ -6,6 +6,8 @@ import Title from '@components/title';
 import useIsMobile from '@hooks/useIsMobile';
 import {getList, initialList} from '@modules/list';
 import {getCart} from '@modules/cart';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 ListContainer.propTypes = {};
 
@@ -17,7 +19,6 @@ function ListContainer({history}) {
     cart           : cart.cartList
   }));
   const [pageNumber, setPageNumber] = useState(1);
-  const [cartData, setCartData] = useState([]);
   const isMobile = useIsMobile(1023);
   const observer = useRef();
   const lastElementRef = useCallback(
@@ -34,6 +35,8 @@ function ListContainer({history}) {
   );
 
   const onClickCartHandler = itemInfo => {
+    const itemName = itemInfo.itemName.substr(0, 7);
+    toast(`[${itemName}..] 상품이 장바구니에 추가되었습니다.`);
     dispatch(getCart(itemInfo));
   };
 
@@ -46,17 +49,6 @@ function ListContainer({history}) {
     dispatch(getList(pageNumber));
   }, [dispatch, pageNumber]);
 
-  useEffect(() => {
-    let storageData = JSON.parse(localStorage.getItem('cart'));
-    if (cart) {
-      if (!storageData) return setCartData([]);
-      return setCartData(cart.filter(item => storageData.includes(item.id)));
-    }
-  }, [cart]);
-
-  useEffect(() => {
-    console.log('cart', cart);
-  }, [cart]);
 
   return (
     <>

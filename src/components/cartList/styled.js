@@ -26,11 +26,36 @@ export const ItemContents = styled.div`
 export const ItemInfo = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
+  padding: 0.5rem;
 `;
 export const ItemThumbnail = styled.img`
   max-width: 100px;
 `;
-export const ItemTitle = styled.div``;
-export const ItemPrice = styled.div``;
-export const ItemQuantity = styled.div``;
-export const ItemTotalPrice = styled.div``;
+export const ItemTitle = styled.div`
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  font-size : 1.1rem;
+`;
+export const ItemPrice = styled.div`
+  margin-bottom: 0.5rem;
+  ::after {
+    content:'원';
+  }
+`;
+export const ItemQuantity = styled.div`
+  margin-bottom: 0.5rem;
+`;
+export const ItemTotalPrice = styled.div`
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  font-size : 1.1rem;
+  text-align: right;
+   span {
+    font-size: 1rem
+  }
+  ::after {
+    content:'원';
+    font-size: 1rem;
+  }
+`;
