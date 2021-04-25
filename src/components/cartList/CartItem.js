@@ -14,19 +14,38 @@ import {
 
 CartItem.propTypes = {};
 
-function CartItem({item}) {
-  const {image, itemName, price, count} = item;
+function CartItem({item, onClickCheckbox, onClickDelete}) {
+  const {id, image, itemName, price, count} = item;
   const {IMG_URL} = config;
   const [quantity, setQuantity] = useState(count);
+  const [checked, setChecked] = useState(false);
   const totalPrice = price * quantity;
   const priceComma = price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
   const totalPriceComma = totalPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
 
-  const increase = () => setQuantity(quantity + 1);
-  const decrease = () => setQuantity(quantity === 1 ? 1 : quantity - 1);
+  const increase = () => {
+    setQuantity(quantity + 1);
+    if (checked) {
+      onClickCheckbox({id, itemName, quantity, price, totalPrice, checked, isPlus: true});
+    }
+  };
+  const decrease = () => {
+    setQuantity(quantity === 1 ? 1 : quantity - 1);
+    if (checked) {
+      onClickCheckbox({id, itemName, quantity, price, totalPrice, checked, isMinus: true});
+    }
+  };
+  const onClick = e => {
+    setChecked(e.target.checked);
+    onClickCheckbox({id, itemName, quantity, price, totalPrice, checked: e.target.checked});
+  };
+  const onClickDel = () => {
+    onClickDelete(item);
+  };
+
   return (
     <ItemContainer>
-      <ItemCheckbox type={'checkbox'}/>
+      <ItemCheckbox onClick={onClick} type={'checkbox'}/>
       <ItemContents>
         <ItemThumbnail src={`${IMG_URL}${image}`}/>
         <ItemInfo>
@@ -39,6 +58,7 @@ function CartItem({item}) {
           </ItemQuantity>
           <ItemTotalPrice><span>합계 : </span>{totalPriceComma}</ItemTotalPrice>
         </ItemInfo>
+        <button onClick={onClickDel}>삭제</button>
       </ItemContents>
     </ItemContainer>
   );

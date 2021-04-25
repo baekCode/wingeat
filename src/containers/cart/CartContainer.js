@@ -1,6 +1,8 @@
 import React from 'react';
 import CartList from '@components/cartList';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {getPayment} from '@modules/payment';
+import {deleteCart} from '@modules/cart';
 
 /*
 * Redux Cart Mock Data
@@ -27,14 +29,25 @@ const MOCK_DATA = [
 CartContainer.propTypes = {};
 
 function CartContainer(props) {
-  /*
-  * 리덕스 장바구니에서 장바구니 리스트를 출력한다. (리덕스는 저장된 스토리지를 먼저 체크할것)*/
+  const dispatch = useDispatch();
   const {cart} = useSelector(({cart}) => ({cart: cart}));
   const cartList = Object.values(cart);
 
+  const onClickCheckbox = itemInfo => {
+    dispatch(getPayment(itemInfo));
+  };
+
+  const onClickDelete = itemInfo => {
+
+    let _data = cartList.filter(item => item.id !== itemInfo.id);
+    if (!_data.length) _data = null;
+
+    dispatch(deleteCart(_data));
+  };
+
   return (
     <>
-      <CartList cartList={cartList}/>
+      <CartList cartList={cartList} onClickCheckbox={onClickCheckbox} onClickDelete={onClickDelete}/>
     </>
   );
 }
