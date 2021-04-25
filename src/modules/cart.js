@@ -5,7 +5,7 @@ const CART = 'cart/CART';
 export const getCart = createAction(CART, cartList => cartList);
 
 const initialState = {
-  cartList: null,
+  cartList: [],
   error   : null
 };
 
