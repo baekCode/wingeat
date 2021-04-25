@@ -6,7 +6,7 @@ HeaderContainer.propTypes = {};
 
 function HeaderContainer(props) {
   const [cartCount, setCartCount] = useState(0);
-  const {cart} = useSelector(({cart}) => ({cart: cart.cartList}));
+  const {cart} = useSelector(({cart}) => ({cart: cart}));
 
   useEffect(() => {
     const count = Object.keys(cart).length;
