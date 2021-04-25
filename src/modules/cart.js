@@ -4,25 +4,31 @@ const CART = 'cart/CART';
 
 export const getCart = createAction(CART, cartList => cartList);
 
-const initialState = {
-  cartList: {},
-  error   : null
-};
+const initialState = {};
 
 const cart = handleActions({
-    [CART]: (state, {payload: cartList}) => {
-      // const resDataKey = Object.keys(cartList.data.resData)[0];
-      const itemKey = cartList?.id;
-      return {
+  [CART]: (state, {payload: cartList}) => {
+    const itemKey = cartList?.id;
+    let storageData = JSON.parse(localStorage.getItem('cartList'));
+    if (!storageData) storageData = {};
+
+    if (itemKey) {
+      storageData = {
         ...state,
-        cartList: {
-          ...state.cartList,
-          [itemKey]: {...cartList}
-        }
+        [itemKey]: {...cartList}
+      };
+    } else {
+      storageData = {
+        ...state,
+        ...cartList
       };
     }
-  },
-  initialState
-);
+
+    const resultData = {...state, ...storageData};
+    localStorage.setItem('cartList', JSON.stringify(resultData));
+
+    return resultData;
+  }
+}, initialState);
 
 export default cart;
