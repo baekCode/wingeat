@@ -3,10 +3,10 @@ import {Cart, Container, Contents, Count, Inner, Logo, TopBar} from '@components
 
 Header.propTypes = {};
 
-function Header({count}) {
+function Header({cartCount = 0}) {
   return (
     <Container>
-      <TopBar><Inner><Cart to={'/cart'}><Count>0</Count>장바구니</Cart></Inner></TopBar>
+      <TopBar><Inner><Cart to={'/cart'}><Count>{cartCount}</Count>장바구니</Cart></Inner></TopBar>
       <Contents><Logo to={'/'}><img src={'https://image.wingeat.com/logo/images/we_logo_center.png'}/></Logo></Contents>
     </Container>
   );

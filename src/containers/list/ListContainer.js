@@ -1,45 +1,70 @@
-import React from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 import List from '@components/list';
 import Title from '@components/title';
-import useIsMobile from '@/hooks/useIsMobile';
-
-const MOCK_DATA = [
-  {
-    'itemName': '쌀집아줌마 오곡/귀리뻥튀기 (8개입, 60g)',
-    'price'   : 1980,
-    'image'   : 'item/images/64ea1347-c524-48a5-8fb6-71bed7e3eef0-w600.jpg',
-    'id'      : '1'
-  },
-  {
-    'itemName': '채담카레 (자연주의 채소 카레)',
-    'price'   : 2750,
-    'image'   : 'item/images/042aa511-5dae-4c52-9724-f5e424d1ebae-w600.jpg',
-    'id'      : '2'
-  },
-  {
-    'itemName': '해남 아이스 엿구마 (150g, 1kg)',
-    'price'   : 4980,
-    'image'   : 'item/images/a1eb32cb-f475-4cb0-a6de-4f4182bee3b9-w600.jpg',
-    'id'      : '3'
-  },
-  {
-    'itemName': '콩고물 앙금 인절미 (20개입)',
-    'price'   : 12900,
-    'image'   : 'item/images/ba49b331-ec8a-4db6-ac93-aa4bf86d3deb-w600.jpg',
-    'id'      : '4'
-  }
-];
+import useIsMobile from '@hooks/useIsMobile';
+import {getList, initialList} from '@modules/list';
+import {getCart} from '@modules/cart';
 
 ListContainer.propTypes = {};
 
-function ListContainer(props) {
+function ListContainer({history}) {
+  const dispatch = useDispatch();
+  const {list, isInfinityPages, cart} = useSelector(({list, cart}) => ({
+    list           : list.list,
+    isInfinityPages: list.isInfinityPages,
+    cart           : cart.cartList
+  }));
+  const [pageNumber, setPageNumber] = useState(1);
+  const [cartData, setCartData] = useState([]);
   const isMobile = useIsMobile(1023);
+  const observer = useRef();
+  const lastElementRef = useCallback(
+    node => {
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting && isInfinityPages) {
+          setPageNumber(prevPageNumber => prevPageNumber + 1);
+        }
+      });
+      if (node) observer.current.observe(node);
+    },
+    [isInfinityPages],
+  );
+
+  const onClickCartHandler = itemInfo => {
+    dispatch(getCart(itemInfo));
+  };
+
+  useEffect(() => {
+    const {location} = history;
+    return () => (location.pathname === '/') && dispatch(initialList());
+  }, [dispatch, history]);
+
+  useEffect(() => {
+    dispatch(getList(pageNumber));
+  }, [dispatch, pageNumber]);
+
+  useEffect(() => {
+    let storageData = JSON.parse(localStorage.getItem('cart'));
+    if (cart) {
+      if (!storageData) return setCartData([]);
+      return setCartData(cart.filter(item => storageData.includes(item.id)));
+    }
+  }, [cart]);
+
+  useEffect(() => {
+    console.log('cart', cart);
+  }, [cart]);
+
   return (
     <>
       <Title children="윙잇 MADE"/>
-      <List list={MOCK_DATA} isMobile={isMobile}/>
+      {list &&
+      <List list={list} isMobile={isMobile} lastElementRef={lastElementRef} onClickCartHandler={onClickCartHandler}/>}
     </>
   );
 }
 
-export default ListContainer;
+export default withRouter(ListContainer);
