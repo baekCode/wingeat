@@ -3,8 +3,10 @@ import {takeLatest} from 'redux-saga/effects';
 import createRequestSaga, {createRequestActionTypes} from '@lib/createRequestSaga';
 import * as listAPI from '@lib/api';
 
+const INITIAL_LIST = 'list/INITIAL_LIST';
 const [LIST, LIST_SUCCESS, LIST_FAILURE] = createRequestActionTypes('list/LIST');
 
+export const initialList = createAction(INITIAL_LIST);
 export const getList = createAction(LIST);
 
 const getListSaga = createRequestSaga(LIST, listAPI.getList);
@@ -20,6 +22,10 @@ const initialState = {
 };
 
 const list = handleActions({
+  [INITIAL_LIST]: state => ({
+    ...state,
+    ...initialState
+  }),
   [LIST]        : state => ({
     ...state,
     list : [...state.list],
