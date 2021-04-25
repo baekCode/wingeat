@@ -1,7 +1,7 @@
 import React from 'react';
 import CartList from '@components/cartList';
 import {useDispatch, useSelector} from 'react-redux';
-import {getPayment} from '@modules/payment';
+import {getPayment, getPaymentDecrease, getPaymentIncrease} from '@modules/payment';
 import {deleteCart} from '@modules/cart';
 
 /*
@@ -37,6 +37,9 @@ function CartContainer(props) {
     dispatch(getPayment(itemInfo));
   };
 
+  const onClickIncrease = itemInfo => dispatch(getPaymentIncrease(itemInfo));
+  const onClickDecrease = itemInfo => dispatch(getPaymentDecrease(itemInfo));
+
   const onClickDelete = itemInfo => {
 
     let _data = cartList.filter(item => item.id !== itemInfo.id);
@@ -47,7 +50,8 @@ function CartContainer(props) {
 
   return (
     <>
-      <CartList cartList={cartList} onClickCheckbox={onClickCheckbox} onClickDelete={onClickDelete}/>
+      <CartList cartList={cartList} onClickCheckbox={onClickCheckbox} onClickDelete={onClickDelete}
+                onClickIncrease={onClickIncrease} onClickDecrease={onClickDecrease}/>
     </>
   );
 }
