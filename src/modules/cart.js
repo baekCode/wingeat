@@ -15,7 +15,10 @@ const cart = handleActions({
     if (itemKey) {
       storageData = {
         ...state,
-        [itemKey]: {...cartList}
+        [itemKey]: {
+          ...cartList,
+          count: state[itemKey]?.count + cartList.count
+        }
       };
     } else {
       storageData = {
