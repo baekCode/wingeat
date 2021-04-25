@@ -5,6 +5,7 @@ import List from '@components/list';
 import Title from '@components/title';
 import useIsMobile from '@hooks/useIsMobile';
 import {getList, initialList} from '@modules/list';
+import {getCart} from '@modules/cart';
 
 ListContainer.propTypes = {};
 
@@ -32,6 +33,10 @@ function ListContainer({history}) {
     [isInfinityPages],
   );
 
+  const onClickCartHandler = itemInfo => {
+    dispatch(getCart(itemInfo));
+  };
+
   useEffect(() => {
     const {location} = history;
     return () => (location.pathname === '/') && dispatch(initialList());
@@ -56,7 +61,8 @@ function ListContainer({history}) {
   return (
     <>
       <Title children="윙잇 MADE"/>
-      {list && <List list={list} isMobile={isMobile} lastElementRef={lastElementRef}/>}
+      {list &&
+      <List list={list} isMobile={isMobile} lastElementRef={lastElementRef} onClickCartHandler={onClickCartHandler}/>}
     </>
   );
 }
