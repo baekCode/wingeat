@@ -1,4 +1,5 @@
 import React from 'react';
+import config from '@config';
 import {
   ItemCheckbox,
   ItemContainer,
@@ -14,16 +15,17 @@ import {
 CartItem.propTypes = {};
 
 function CartItem({item}) {
+  const {IMG_URL} = config;
   return (
     <ItemContainer>
       <ItemCheckbox type={'checkbox'}/>
       <ItemContents>
-        <ItemThumbnail src={`https://image.wingeat.com/${item.image}`}/>
+        <ItemThumbnail src={`${IMG_URL}${item.image}`}/>
         <ItemInfo>
           <ItemTitle children={item.itemName}/>
           <ItemPrice children={item.price}/>
           <ItemQuantity>{item.count}</ItemQuantity>
-          <ItemTotalPrice>합계금액</ItemTotalPrice>
+          <ItemTotalPrice>{item.price * item.count}</ItemTotalPrice>
         </ItemInfo>
       </ItemContents>
 

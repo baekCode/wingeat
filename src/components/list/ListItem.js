@@ -1,4 +1,5 @@
 import React from 'react';
+import config from '@config';
 import {
   ItemCart,
   ItemCartButton,
@@ -15,6 +16,7 @@ ListItem.propTypes = {};
 
 function ListItem({item, isMobile, lastElementRef, onClickCartHandler}) {
   const {id, itemName, image} = item;
+  const {IMG_URL} = config;
 
   const price = item?.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
   const onClick = () => {
@@ -26,7 +28,7 @@ function ListItem({item, isMobile, lastElementRef, onClickCartHandler}) {
     <ItemContainer isMobile={isMobile} ref={lastElementRef} data-id={id}>
       <ItemContents>
         <ItemThumb>
-          <img src={`https://image.wingeat.com/${image}`} alt=""/>
+          <img src={`${IMG_URL}${image}`} alt=""/>
           <ItemCart><ItemCartButton onClick={onClick}><FaShoppingCart/></ItemCartButton></ItemCart>
         </ItemThumb>
         <ItemInfo>
