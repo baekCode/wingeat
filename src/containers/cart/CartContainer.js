@@ -50,8 +50,11 @@ function CartContainer(props) {
 
   return (
     <>
-      <CartList cartList={cartList} onClickCheckbox={onClickCheckbox} onClickDelete={onClickDelete}
-                onClickIncrease={onClickIncrease} onClickDecrease={onClickDecrease}/>
+      <CartList cartList={cartList}
+                onClickCheckbox={onClickCheckbox}
+                onClickDelete={onClickDelete}
+                onClickIncrease={onClickIncrease}
+                onClickDecrease={onClickDecrease}/>
     </>
   );
 }
