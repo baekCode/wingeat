@@ -11,6 +11,7 @@ import {
   ItemTitle,
   ItemTotalPrice
 } from '@components/cartList/styled';
+import {toast} from 'react-toastify';
 
 CartItem.propTypes = {};
 
@@ -40,6 +41,7 @@ function CartItem({item, onClickCheckbox, onClickDelete, onClickIncrease, onClic
     onClickCheckbox({id, itemName, quantity, price, totalPrice, checked: e.target.checked});
   };
   const onClickDel = () => {
+    if (checked) return toast.error('체크 해제 후 삭제 ');
     onClickDelete(item);
   };
 
