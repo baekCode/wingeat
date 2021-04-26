@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {TiDeleteOutline} from 'react-icons/all';
 
 export const Container = styled.div`
   width: 70%;
@@ -58,4 +59,17 @@ export const ItemTotalPrice = styled.div`
     content:'원';
     font-size: 1rem;
   }
+`;
+export const QuantityButton = styled.button`
+  border: 1px solid #ccc;
+  background: transparent;
+`;
+export const DeleteButton = styled.button`
+  border: 0;
+  cursor: pointer;
+  background: transparent;
+`;
+export const DeleteButtonIcon = styled(TiDeleteOutline)`
+  width: 40px;
+  height: 40px
 `;

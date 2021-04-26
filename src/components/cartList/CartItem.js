@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import config from '@config';
 import {
+  DeleteButton,
+  DeleteButtonIcon,
   ItemCheckbox,
   ItemContainer,
   ItemContents,
@@ -9,7 +11,8 @@ import {
   ItemQuantity,
   ItemThumbnail,
   ItemTitle,
-  ItemTotalPrice
+  ItemTotalPrice,
+  QuantityButton
 } from '@components/cartList/styled';
 import {toast} from 'react-toastify';
 
@@ -54,13 +57,13 @@ function CartItem({item, onClickCheckbox, onClickDelete, onClickIncrease, onClic
           <ItemTitle children={itemName}/>
           <ItemPrice><span>가격 : </span>{priceComma}</ItemPrice>
           <ItemQuantity><span>수량 : </span>
-            <button onClick={decrease}>-</button>
+            <QuantityButton type={'decrease'} onClick={decrease}>-</QuantityButton>
             {quantity}
-            <button onClick={increase}>+</button>
+            <QuantityButton type={'increase'} onClick={increase}>+</QuantityButton>
           </ItemQuantity>
           <ItemTotalPrice><span>합계 : </span>{totalPriceComma}</ItemTotalPrice>
         </ItemInfo>
-        <button onClick={onClickDel}>삭제</button>
+        <DeleteButton onClick={onClickDel}><DeleteButtonIcon/></DeleteButton>
       </ItemContents>
     </ItemContainer>
   );

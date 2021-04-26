@@ -22,4 +22,10 @@ export const TotalPrice = styled.div`
   margin-top: 2rem;
   min-height: 50px;
   max-height: 150px;
+  font-weight: bold;
+  font-size: 1.5rem;
+  ::after {
+    content:'원';
+    font-size: 1.2rem;
+  }
 `;
